@@ -3,218 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Disha ❤️</title>
+    <title>For My Dishu ❤️</title>
+    
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+
     <style>
-        /* --- General Styles --- */
-        body {
+        /* --- 1. RESET & BASIC SETUP --- */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            font-family: 'Varela Round', sans-serif;
-            overflow: hidden;
+            overflow: hidden; /* Prevents scrollbars when button gets huge */
             position: relative;
         }
 
-        /* --- Floating Hearts Background --- */
-        .hearts-bg {
+        /* --- 2. FLOATING BACKGROUND EMOJIS --- */
+        .bg-emoji {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .heart {
-            position: absolute;
-            bottom: -100px;
-            color: rgba(255, 255, 255, 0.5);
             font-size: 2rem;
-            animation: floatUp 10s linear infinite;
+            opacity: 0.3;
+            z-index: 0;
+            animation: float 8s infinite linear;
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* --- Main Card --- */
-        .container {
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.9);
+        /* --- 3. MAIN CARD STYLE --- */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
             padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             text-align: center;
             max-width: 90%;
-            width: 400px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.8);
+            width: 450px;
+            z-index: 10;
+            transition: transform 0.3s ease;
         }
 
         h1 {
             color: #ff4d79;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 2em;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 800;
         }
 
         p {
-            color: #666;
-            font-size: 1.1em;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .gif-container {
-            width: 100%;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .gif-container img {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 15px;
-        }
-
-        /* --- Buttons --- */
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            min-height: 60px;
-        }
-
-        button {
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 800;
-            font-size: 1.1em;
-            transition: all 0.2s ease;
-        }
-
-        #yes-btn {
-            background-color: #ff4d79;
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 77, 121, 0.4);
-            z-index: 20; /* Ensure Yes is always on top if they overlap */
-        }
-
-        #yes-btn:hover {
-            transform: scale(1.05);
-            background-color: #ff3366;
-        }
-
-        #no-btn {
-            background-color: #e0e0e0;
+            font-size: 1.2em;
             color: #555;
+            margin-bottom: 25px;
+        }
+
+        .img-box {
+            height: 200px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-box img {
+            max-height: 100%;
+            max-width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        /* --- 4. BUTTONS --- */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap; /* Allows wrapping on mobile */
             position: relative;
         }
 
-        #no-btn:hover {
-            background-color: #d6d6d6;
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
         }
 
-        /* --- Hidden Success Page --- */
-        #success-page {
+        .yes-btn {
+            background-color: #ff4d79;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 121, 0.3);
+            z-index: 20; /* Keep Yes on top */
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.05);
+            background-color: #e6004c;
+        }
+
+        .no-btn {
+            background-color: #e2e2e2;
+            color: #333;
+        }
+
+        .no-btn:hover {
+            background-color: #ccc;
+        }
+
+        /* --- 5. SUCCESS SCREEN --- */
+        #success-screen {
             display: none;
-            z-index: 20;
             text-align: center;
+            z-index: 30;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffe6f2;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        #success-page h1 {
-            font-size: 3em;
-            color: #ff4d79;
+        .success-content h1 {
+            font-size: 3.5rem;
+            color: #ff3366;
+            margin-bottom: 20px;
         }
         
-        .memory-lane {
-            font-size: 3em;
-            margin-top: 20px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
+        .success-content p {
+            font-size: 1.8rem;
+            color: #d63384;
         }
 
     </style>
 </head>
 <body>
 
-    <div class="hearts-bg" id="hearts-container"></div>
+    <div id="emoji-container"></div>
 
-    <div class="container" id="main-card">
-        <div class="gif-container">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnJ3bnFna216eGZ0bnZ4Y2wxN2FwYW42bWJ6dGg0aGZ6Z3Z2a2xhNyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Bear">
+    <div class="card" id="question-card">
+        <div class="img-box">
+            <img src="https://media1.tenor.com/m/7zK3cCmq_D4AAAAC/cute-bear.gif" alt="Cute Bear Requesting">
         </div>
         <h1>Will you be my Valentine?</h1>
-        <p>We've been stuck together for 2 years... might as well make it official again? 😏</p>
+        <p>2 years of madness... ready for more? 🤪</p>
         
-        <div class="btn-group">
-            <button id="yes-btn" onclick="acceptProposal()">Yes! ❤️</button>
-            <button id="no-btn" onclick="handleNoClick()">No 🙄</button>
+        <div class="buttons">
+            <button class="yes-btn" id="yesBtn" onclick="sayYes()">Yes! ❤️</button>
+            <button class="no-btn" id="noBtn" onclick="avoidNo()">No 🙄</button>
         </div>
     </div>
 
-    <div id="success-page">
-        <div class="gif-container">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXN5eGZ4eXF4bnF6eGZ0bnZ4Y2wxN2FwYW42bWJ6dGg0aGZ6Z3Z2a2xhNyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/26BRv0ThflsHCqDrG/giphy.gif" alt="Happy Bears">
+    <div id="success-screen">
+        <div class="img-box" style="height: 250px;">
+            <img src="https://media1.tenor.com/m/6mYh-9S9jXoAAAAC/peach-goma-peach-and-goma.gif" alt="Hugging Bears">
         </div>
-        <h1>YAY! I Knew It! 🥰</h1>
-        <p style="font-size: 1.5em; color: #d63384; font-weight: bold;">
-            Happy 2 Years Dishu Baby! 💖<br>
-            Prepare for Chippys & Noods! 🍟🍜
-        </p>
-        <div class="memory-lane">
-            <span>💍</span><span>🏠</span><span>🥔</span><span>🧃</span>
+        <div class="success-content">
+            <h1>YAYYY! 🥰</h1>
+            <p>Happy 2 Years Dishu Baby! ✨<br>Let's go get Noods! 🍜</p>
         </div>
     </div>
 
     <script>
-        // --- Logic to create floating hearts ---
-        function createHearts() {
-            const container = document.getElementById('hearts-container');
-            const heartSymbols = ['❤️', '💖', '💕', '🥰', '🥔', '🍜']; // Added chips and noods
-            
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 3 + 7) + 's'; // 7-10s
-                heart.style.fontSize = (Math.random() * 1 + 1) + 'rem';
-                container.appendChild(heart);
-                
-                setTimeout(() => {
-                    heart.remove();
-                }, 10000);
-            }, 500);
-        }
-
-        // --- Interaction Logic ---
-        let noClickCount = 0;
-        const noBtn = document.getElementById('no-btn');
-        const yesBtn = document.getElementById('yes-btn');
-        const mainCard = document.getElementById('main-card');
-        
-        // The playful rejection messages
+        // --- CONFIGURATION ---
         const phrases = [
             "No 🙄",
             "Are you sure?",
@@ -225,12 +189,97 @@
             "We need Bevys! ☕",
             "Don't do this to me 🥺",
             "I'm gonna cry...",
-            "You're stuck with me! 🤪",
-            "Just click YES already! ❤️"
+            "Breaking my heart 💔",
+            "Last chance!",
+            "Okay, I'm forcing you now..."
         ];
 
-        function handleNoClick() {
-            noClickCount++;
+        let noCount = 0;
+
+        // --- FUNCTIONS ---
+
+        function avoidNo() {
+            noCount++;
             
-            // 1. Change Text
-            const phraseIndex = Math.min(noClickCount, phrases.length - 1
+            // 1. Change the text on the No Button
+            const noBtn = document.getElementById('noBtn');
+            // Loop through phrases if we run out
+            const textIndex = Math.min(noCount, phrases.length - 1);
+            noBtn.innerText = phrases[textIndex];
+
+            // 2. Make the Yes Button Grow
+            const yesBtn = document.getElementById('yesBtn');
+            
+            // Get current font size
+            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingTop);
+            
+            // Increase size
+            yesBtn.style.fontSize = `${currentSize * 1.4}px`;
+            yesBtn.style.padding = `${currentPadding * 1.2}px ${currentPadding * 2.5}px`;
+            
+            // 3. If clicked too many times, hide the No button
+            if (noCount > 12) {
+                noBtn.style.display = 'none';
+                yesBtn.style.fontSize = '50px';
+                yesBtn.innerText = "JUST CLICK YES! ❤️";
+            }
+        }
+
+        function sayYes() {
+            // 1. Confetti Explosion
+            launchConfetti();
+            
+            // 2. Hide Card, Show Success
+            document.getElementById('question-card').style.display = 'none';
+            const successScreen = document.getElementById('success-screen');
+            successScreen.style.display = 'flex'; // Uses flex to center content
+        }
+
+        // --- CONFETTI LOGIC ---
+        function launchConfetti() {
+            const duration = 5 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
+
+            const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+                confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+            }, 250);
+        }
+
+        // --- BACKGROUND EMOJI GENERATOR ---
+        function createEmojis() {
+            const container = document.getElementById('emoji-container');
+            const emojis = ['❤️', '💖', '🥔', '🍜', '🧃', '✨', '💍'];
+            
+            // Create 15 floating emojis
+            for (let i = 0; i < 15; i++) {
+                const el = document.createElement('div');
+                el.classList.add('bg-emoji');
+                el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                // Random positioning
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.animationDuration = (Math.random() * 5 + 5) + 's'; // 5-10s
+                el.style.animationDelay = (Math.random() * 5) + 's';
+                
+                container.appendChild(el);
+            }
+        }
+
+        // Start background
+        createEmojis();
+
+    </script>
+</body>
+</html>
