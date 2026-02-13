@@ -1,63 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>A Question for You...</title>
+  <title>For Disha ❤️</title>
   <style>
     body {
-      background-color: lightblue;
-      font-family: cursive;
+      background-color: #ffe6f2; /* Light pink background */
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; /* Cute font */
       text-align: center;
-      /* This centers the content vertically on the screen */
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
+      height: 100vh; /* Full screen height */
       margin: 0;
+      overflow: hidden; /* Hides scrollbars for the floating animations */
     }
 
     h1 {
-      color: #333;
-      margin-bottom: 20px;
+      color: #d63384; /* Darker pink for heading */
+      font-size: 3em;
+      margin-bottom: 10px;
+      z-index: 10; /* Keeps text on top of floating items */
     }
 
-    p {
-      font-size: 18px;
+    /* The box where the reasons appear */
+    #reason-display {
+      font-size: 1.5em;
+      color: #555;
+      min-height: 50px;
       margin-bottom: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      max-width: 80%;
+      z-index: 10;
+      transition: all 0.3s ease;
     }
 
+    /* Button Styles */
     button {
-      background-color: hotpink;
-      color: lightyellow;
+      background-color: #ff66b2;
+      color: white;
       border: none;
       padding: 15px 30px;
-      font-size: 20px;
-      border-radius: 15px;
+      font-size: 1.2em;
+      border-radius: 50px;
       cursor: pointer;
       margin: 10px;
-      font-family: cursive;
-      transition: transform 0.2s; /* Makes the button bounce a little on click */
+      box-shadow: 0 4px 0 #cc4d8a; /* 3D effect */
+      transition: transform 0.1s;
+      z-index: 10;
     }
 
-    button:hover {
-      transform: scale(1.1); /* Makes the button grow slightly when you hover */
+    button:active {
+      transform: translateY(4px); /* Button presses down */
+      box-shadow: none;
     }
+
+    /* Floating Background Animation */
+    .background-item {
+      position: absolute;
+      font-size: 4em; /* Big emojis */
+      opacity: 0.6;
+      animation: float 6s infinite ease-in-out;
+      z-index: 1; /* Puts them behind the text */
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+    }
+
   </style>
 </head>
 <body>
 
   <h1>Will you be my Valentine?</h1>
-
-  <p>You've been stuck with me for 2 years and you will continue to be stuck for many more - love Saketh</p>
-
-  <div>
-    <button onclick="alert('Yay! I love you! ❤️')">Yes</button>
-    
-    <button onclick="this.innerText = 'Yes'; this.onclick = function(){ alert('Yay! I love you! ❤️'); }">No</button>
+  
+  <div id="reason-display">
+    You've been stuck with me for 2 years... click "No" to see why you're stuck forever! 😉
   </div>
 
+  <div>
+    <button onclick="sayYes()">Yes! ❤️</button>
+    <button onclick="nextReason()">No (Try me) 😈</button>
+  </div>
+
+  <div class="background-item" style="top: 10%; left: 10%; animation-delay: 0s;">🍜</div>
+  <div class="background-item" style="top: 20%; right: 15%; animation-delay: 1s;">🧃</div>
+  <div class="background-item" style="top: 70%; left: 15%; animation-delay: 2s;">🍟</div>
+  <div class="background-item" style="top: 60%; right: 10%; animation-delay: 3s;">☕</div>
+  <div class="background-item" style="top: 15%; left: 50%; animation-delay: 4s;">🥔</div>
+
   <script>
-    // I added a small script here to handle the "No" button trick more cleanly
-    // The 'onclick' in the HTML above handles the initial change!
+    // 1. The Array: This is the list of reasons you provided!
+    const reasons = [
+      "Because you love your chippy's! 🥔",
+      "Because of your jueceeeeee! 🧃",
+      "Because we need more bevys! ☕",
+      "Because of the NOODS! 🍜",
+      "Because you are stuck with me anyway! 🤪",
+      "Because I love you loads! ❤️"
+    ];
+
+    let currentReasonIndex = 0;
+
+    // 2. The Function: Cycles through the list
+    function nextReason() {
+      // Get the display box
+      const display = document.getElementById('reason-display');
+      
+      // Update the text to the current reason
+      display.innerText = reasons[currentReasonIndex];
+      
+      // Move to the next item in the list
+      currentReasonIndex++;
+      
+      // If we reach the end of the list, start over
+      if (currentReasonIndex >= reasons.length) {
+        currentReasonIndex = 0;
+      }
+    }
+
+    function sayYes() {
+      alert("Yay! I knew you'd say yes! happy 2 years baby! 💖");
+    }
   </script>
 
 </body>
