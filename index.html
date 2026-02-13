@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A Question for You...</title>
+  <style>
+    body {
+      background-color: lightblue;
+      font-family: cursive;
+      text-align: center;
+      /* This centers the content vertically on the screen */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background-color: hotpink;
+      color: lightyellow;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      margin: 10px;
+      font-family: cursive;
+      transition: transform 0.2s; /* Makes the button bounce a little on click */
+    }
+
+    button:hover {
+      transform: scale(1.1); /* Makes the button grow slightly when you hover */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Will you be my Valentine?</h1>
+
+  <p>You've been stuck with me for 2 years and you will continue to be stuck for many more - love Saketh</p>
+
+  <div>
+    <button onclick="alert('Yay! I love you! ❤️')">Yes</button>
+    
+    <button onclick="this.innerText = 'Yes'; this.onclick = function(){ alert('Yay! I love you! ❤️'); }">No</button>
+  </div>
+
+  <script>
+    // I added a small script here to handle the "No" button trick more cleanly
+    // The 'onclick' in the HTML above handles the initial change!
+  </script>
+
+</body>
+</html>
