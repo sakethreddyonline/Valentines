@@ -1,195 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Disha ❤️</title>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <style>
-    body {
-      background-color: #ffe6f2;
-      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Disha ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- General Styles --- */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'Varela Round', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
 
-    #main-panel {
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 40px;
-      border-radius: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      max-width: 85%;
-    }
+        /* --- Floating Hearts Background --- */
+        .hearts-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-    h1 {
-      color: #d63384;
-      font-size: 2.5em;
-      margin-top: 0;
-    }
+        .heart {
+            position: absolute;
+            bottom: -100px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 2rem;
+            animation: floatUp 10s linear infinite;
+        }
 
-    #reason-display {
-      font-size: 1.4em;
-      color: #555;
-      margin: 20px 0;
-      min-height: 60px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
 
-    .btn-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-      min-height: 60px;
-    }
+        /* --- Main Card --- */
+        .container {
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.8);
+        }
 
-    button {
-      background-color: #ff66b2;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.1em;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 4px 0 #cc4d8a;
-      transition: transform 0.1s;
-      white-space: nowrap;
-    }
+        h1 {
+            color: #ff4d79;
+            margin-bottom: 10px;
+            font-size: 2em;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+        }
 
-    button:active {
-      transform: translateY(4px);
-      box-shadow: none;
-    }
+        p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
 
-    #no-btn {
-      position: relative;
-      transition: all 0.2s ease;
-    }
+        .gif-container {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-    #yes-screen {
-      display: none;
-      z-index: 100;
-      padding: 20px;
-    }
+        .gif-container img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+        }
 
-    .background-item {
-      position: absolute;
-      font-size: 3em;
-      opacity: 0.4;
-      animation: float 5s infinite ease-in-out;
-      z-index: 1;
-      pointer-events: none;
-    }
+        /* --- Buttons --- */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            min-height: 60px;
+        }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-30px) rotate(10deg); }
-    }
-  </style>
+        button {
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 1.1em;
+            transition: all 0.2s ease;
+        }
+
+        #yes-btn {
+            background-color: #ff4d79;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 121, 0.4);
+            z-index: 20; /* Ensure Yes is always on top if they overlap */
+        }
+
+        #yes-btn:hover {
+            transform: scale(1.05);
+            background-color: #ff3366;
+        }
+
+        #no-btn {
+            background-color: #e0e0e0;
+            color: #555;
+            position: relative;
+        }
+
+        #no-btn:hover {
+            background-color: #d6d6d6;
+        }
+
+        /* --- Hidden Success Page --- */
+        #success-page {
+            display: none;
+            z-index: 20;
+            text-align: center;
+        }
+
+        #success-page h1 {
+            font-size: 3em;
+            color: #ff4d79;
+        }
+        
+        .memory-lane {
+            font-size: 3em;
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+    </style>
 </head>
 <body>
 
-  <div id="main-panel">
-    <h1>Will you be my Valentine?</h1>
-    <div id="reason-display">
-      You've been stuck with me for 2 years... ❤️
+    <div class="hearts-bg" id="hearts-container"></div>
+
+    <div class="container" id="main-card">
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnJ3bnFna216eGZ0bnZ4Y2wxN2FwYW42bWJ6dGg0aGZ6Z3Z2a2xhNyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Bear">
+        </div>
+        <h1>Will you be my Valentine?</h1>
+        <p>We've been stuck together for 2 years... might as well make it official again? 😏</p>
+        
+        <div class="btn-group">
+            <button id="yes-btn" onclick="acceptProposal()">Yes! ❤️</button>
+            <button id="no-btn" onclick="handleNoClick()">No 🙄</button>
+        </div>
     </div>
-    <div class="btn-container">
-      <button onclick="showSuccess()">Yes! ❤️</button>
-      <button id="no-btn" onclick="showNextReason()" onmouseover="moveButton()">No (Try me) 😈</button>
+
+    <div id="success-page">
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXN5eGZ4eXF4bnF6eGZ0bnZ4Y2wxN2FwYW42bWJ6dGg0aGZ6Z3Z2a2xhNyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/26BRv0ThflsHCqDrG/giphy.gif" alt="Happy Bears">
+        </div>
+        <h1>YAY! I Knew It! 🥰</h1>
+        <p style="font-size: 1.5em; color: #d63384; font-weight: bold;">
+            Happy 2 Years Dishu Baby! 💖<br>
+            Prepare for Chippys & Noods! 🍟🍜
+        </p>
+        <div class="memory-lane">
+            <span>💍</span><span>🏠</span><span>🥔</span><span>🧃</span>
+        </div>
     </div>
-  </div>
 
-  <div id="yes-screen">
-    <h1 style="font-size: 3.5em;">YAY! 🥰</h1>
-    <p style="font-size: 2.2em; color: #d63384; line-height: 1.4;">
-      I love you dishu baby, <br> happy 2 years again 💖✨🥂
-    </p>
-    <div style="font-size: 80px;">💍✨🏠</div>
-  </div>
-
-  <div class="background-item" style="top: 10%; left: 5%;">🍜</div>
-  <div class="background-item" style="top: 15%; right: 10%; animation-delay: 1s;">🧃</div>
-  <div class="background-item" style="top: 75%; left: 10%; animation-delay: 2s;">🍟</div>
-  <div class="background-item" style="top: 65%; right: 5%; animation-delay: 3s;">☕</div>
-  <div class="background-item" style="top: 25%; left: 45%; animation-delay: 4s;">🥔</div>
-  <div class="background-item" style="top: 50%; left: 5%; animation-delay: 1.5s;">❤️</div>
-
-  <script>
-    const reasons = [
-      "Because you love your chippy's! 🥔",
-      "Because of your jueceeeeee! 🧃",
-      "Because we need more bevys! ☕",
-      "Because of the NOODS! 🍜",
-      "Because you are stuck with me anyway! 🤪",
-      "Because I love you loads! ❤️"
-    ];
-
-    let currentReason = 0;
-    let runaway = false;
-
-    function showNextReason() {
-      const display = document.getElementById('reason-display');
-      display.innerText = reasons[currentReason];
-      
-      currentReason++;
-      
-      if (currentReason >= reasons.length) {
-        runaway = true;
-        document.getElementById('no-btn').innerText = "You can't say No! 🏃‍♀️";
-      }
-    }
-
-    function moveButton() {
-      if (!runaway) return;
-      
-      const btn = document.getElementById('no-btn');
-      const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-      
-      btn.style.position = 'fixed';
-      btn.style.left = x + 'px';
-      btn.style.top = y + 'px';
-    }
-
-    function showSuccess() {
-      // Hide main panel
-      document.getElementById('main-panel').style.display = 'none';
-      
-      // Show success screen
-      const success = document.getElementById('yes-screen');
-      success.style.display = 'block';
-      document.body.style.backgroundColor = '#ffcce6';
-
-      // Launch Confetti
-      const duration = 5 * 1000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-      const randomInRange = (min, max) => Math.random() * (max - min) + min;
-
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
+    <script>
+        // --- Logic to create floating hearts ---
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartSymbols = ['❤️', '💖', '💕', '🥰', '🥔', '🍜']; // Added chips and noods
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 7) + 's'; // 7-10s
+                heart.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000);
+            }, 500);
         }
 
-        const particleCount = 50 * (timeLeft / duration);
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
-      }, 250);
-    }
-  </script>
-</body>
-</html>
+        // --- Interaction Logic ---
+        let noClickCount = 0;
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const mainCard = document.getElementById('main-card');
+        
+        // The playful rejection messages
+        const phrases = [
+            "No 🙄",
+            "Are you sure?",
+            "Really sure?",
+            "Think about the Chippys! 🥔",
+            "What about the Jueceeee? 🧃",
+            "But... the Noods! 🍜",
+            "We need Bevys! ☕",
+            "Don't do this to me 🥺",
+            "I'm gonna cry...",
+            "You're stuck with me! 🤪",
+            "Just click YES already! ❤️"
+        ];
+
+        function handleNoClick() {
+            noClickCount++;
+            
+            // 1. Change Text
+            const phraseIndex = Math.min(noClickCount, phrases.length - 1
